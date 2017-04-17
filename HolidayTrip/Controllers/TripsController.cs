@@ -10,6 +10,7 @@ using HolidayTrip.Models;
 
 namespace HolidayTrip.Controllers
 {
+    [Authorize]
     public class TripsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
