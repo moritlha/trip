@@ -19,6 +19,7 @@ namespace HolidayTrip.Controllers
         public ActionResult Index()
         {
 
+
             return View(db.Trips.ToList());
         }
 
