@@ -17,7 +17,24 @@ namespace HolidayTrip.Controllers
         // GET: Trips
         public ActionResult Index()
         {
+
             return View(db.Trips.ToList());
+        }
+
+        [HttpPost]
+        public ActionResult Index(DateTime filterDateTime)
+        {
+            if (filterDateTime == null )
+            {
+                return View(db.Trips.ToList());
+            }
+            else
+            {
+
+                return View(db.Trips.Where(d=>d.StartDate >= filterDateTime).ToList());
+            }
+
+            
         }
 
         // GET: Trips/Details/5
