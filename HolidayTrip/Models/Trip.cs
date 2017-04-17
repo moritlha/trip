@@ -6,7 +6,7 @@ using System.Web;
 
 namespace HolidayTrip.Models
 {
-    public class Trip
+    public class Trip : IValidatableObject
     {
         public Guid TripId { get; set; }
 
@@ -27,5 +27,16 @@ namespace HolidayTrip.Models
 
         [MaxLength(256)]
         public string Comments { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            if (EndDate <= StartDate)
+            {
+                yield return
+                    new ValidationResult(errorMessage: "EndDate must be greater than StartDate",
+                        memberNames: new[] {"EndDate"});
+            }
+        }
     }
+
 }
